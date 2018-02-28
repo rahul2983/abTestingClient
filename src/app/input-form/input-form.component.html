@@ -4,7 +4,7 @@
     <form (ngSubmit)="onSubmit()" #InputForm="ngForm">
       <div class="form-group">
         <label for="name">AB Test URL</label>
-        <input type="text" class="form-control" id="name" name="urlName" required [(ngModel)]="inputInfo.url" #url="ngModel">
+        <input #testURLVal type="text" class="form-control" id="name" name="urlName" required [(ngModel)]="inputInfo.url" #url="ngModel">
         <div [hidden]="url.valid || url.pristine" class="alert alert-danger">
           URL is required
         </div>
@@ -16,7 +16,11 @@
 </div>
 <br/>
 <div *ngIf="submitted" class="container">
-  <iframe width="100%" height="300px" [src]="setUrl()"></iframe>
+  <iframe #pageDOM (load)="onLoad()" width="100%" height="300px" [src]="safeURL"></iframe>
   <!-- TODO: Disable all links within iframe -->
 </div>
 {{ diagnostic }}
+
+<div *ngIf="loaded" class="container">
+  Loaded DOM
+</div>
