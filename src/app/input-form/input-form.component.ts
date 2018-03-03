@@ -9,9 +9,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./input-form.component.css']
 })
 export class InputFormComponent implements OnInit {
-  inputInfo = new InputInfo('http://www.espncricinfo.com/');
+  inputInfo = new InputInfo('http://localhost:4200/testPage.html', 'console.log("Hello World");');
   submitted = false;
-  loaded = false;
+  codeAdded = false;
+  enableIframe = false;
   safeURL: SafeResourceUrl;
 
   constructor(private loadUrlService: LoadUrlService, private sanitizer: DomSanitizer, private el: ElementRef) { }
@@ -26,6 +27,8 @@ export class InputFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.codeAdded = true;
+    this.enableIframe = this.submitted && this.codeAdded;
     this.loadUrlService.loadUrl(this.inputInfo);
   }
 
@@ -34,9 +37,16 @@ export class InputFormComponent implements OnInit {
   }
 
   @HostListener('onload') onLoad() {
-    let iframeElem = this.el.nativeElement.querySelector('iframe');
-    console.log(iframeElem);
-    console.log(iframeElem.querySelector('html'));
+    this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
+      if (element.parentNode.id === 'variationIframe' && element.contentDocument.body.firstElementChild) {
+        let iframeScript = element.contentDocument.createElement('script');
+        iframeScript.innerText = this.inputInfo.codeSnippet;
+        element.contentDocument.body.appendChild(iframeScript);
+      }
+    });
     
   }
 }
+
+// document.querySelector('h1').innerText = 'Inside Aprajitas Version of the Page';
+// console.log("Hello World");

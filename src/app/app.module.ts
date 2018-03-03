@@ -10,13 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
 import { InputFormComponent } from './input-form/input-form.component';
+import { TestPageComponent } from './test-page/test-page.component';
+import { CustomCodeComponent } from './custom-code/custom-code.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RootComponent,
-    InputFormComponent
+    InputFormComponent,
+    TestPageComponent,
+    CustomCodeComponent
   ],
   imports: [
     BrowserModule,
