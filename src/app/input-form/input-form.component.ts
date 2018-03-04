@@ -39,12 +39,34 @@ export class InputFormComponent implements OnInit {
   @HostListener('onload') onLoad() {
     this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
       if (element.parentNode.id === 'variationIframe' && element.contentDocument.body.firstElementChild) {
+        // console.log(element.parentNode.id);
+        // console.log(element.contentDocument.body.firstElementChild);
         let iframeScript = element.contentDocument.createElement('script');
         iframeScript.innerText = this.inputInfo.codeSnippet;
         element.contentDocument.body.appendChild(iframeScript);
       }
     });
     
+  }
+
+  over() {
+    this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
+      if (element.parentNode.id === 'userFriendlyIframe' && element.contentDocument.body.firstElementChild) {
+        console.log('Mouse Hover');
+        element.contentDocument.querySelectorAll('div').forEach( divElem => {
+          console.log(divElem);
+          divElem.addEventListener('mouseover', (event) => {
+            event.target.setAttribute('style', 'border-style: dotted;');
+          });
+          divElem.addEventListener('mouseout', (event) => {
+            event.target.setAttribute('style', '');
+          });
+          divElem.addEventListener('click', (event) => {
+            console.log('pop an options box with selections');
+          })
+        });
+      }
+    });
   }
 }
 

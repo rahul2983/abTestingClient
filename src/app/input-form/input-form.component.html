@@ -11,6 +11,7 @@
         <!-- TODO: remove this: {{inputInfo.url}} -->
 
         <br/>
+
         <textarea rows="4" cols="50" name="codeBox" form="inputForm" required [(ngModel)]="inputInfo.codeSnippet" #codeSnippet="ngModel"></textarea>
         <div [hidden]="codeSnippet.valid || codeSnippet.pristine" class="alert alert-danger">
           Code Snippet is required but no <code>script tag</code> needed
@@ -18,12 +19,11 @@
         <!-- TODO: remove this: {{inputInfo.codeSnippet}} -->
 
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Create</button>
     </form>
 
     <br/>
 
-    
   <!-- </div> -->
 </div>
 <br/>
@@ -35,7 +35,6 @@
   <!-- TODO: Disable all links within iframe -->
 </div>
 
-
 <div *ngIf="enableIframe" class="container"  id="originalIframe" >
     <h4>Original Webpage</h4>
   <!-- <div class="container"> -->
@@ -43,6 +42,16 @@
     <!-- TODO: Disable all links within iframe -->
   </div>
 <!-- {{ diagnostic }} -->
+
+<div *ngIf="enableIframe" class="container"  id="userFriendlyIframe" >
+  <h4>User Edited Webpage</h4>
+<!-- <div class="container"> -->
+  <iframe (load)="onLoad()" on-mouseover="over()" width="100%" height="300px" [src]="safeURL"></iframe>
+  <!-- TODO: Disable all links within iframe -->
+</div>
+<!-- {{ diagnostic }} -->
+
+
 
 <div *ngIf="codeAdded" class="container">
   Loaded DOM
