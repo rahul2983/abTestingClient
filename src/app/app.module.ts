@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TestPageComponent } from './test-page/test-page.component';
-import { CustomCodeComponent } from './custom-code/custom-code.component';
 
 
 @NgModule({
@@ -19,8 +18,7 @@ import { CustomCodeComponent } from './custom-code/custom-code.component';
     AppComponent,
     RootComponent,
     InputFormComponent,
-    TestPageComponent,
-    CustomCodeComponent
+    TestPageComponent
   ],
   imports: [
     BrowserModule,
