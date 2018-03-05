@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { InputInfo } from '../models/input-info';
 import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -15,7 +15,7 @@ export class InputFormComponent implements OnInit {
   enableIframe = false;
   safeURL: SafeResourceUrl;
 
-  constructor(private loadUrlService: LoadUrlService, private sanitizer: DomSanitizer, private el: ElementRef) { }
+  constructor(private loadUrlService: LoadUrlService, private sanitizer: DomSanitizer, private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url);
@@ -55,15 +55,15 @@ export class InputFormComponent implements OnInit {
         console.log('Mouse Hover');
         element.contentDocument.querySelectorAll('div').forEach( divElem => {
           console.log(divElem);
-          divElem.addEventListener('mouseover', (event) => {
+          this.renderer.listen(divElem, 'mouseover',  (event) => {
             event.target.setAttribute('style', 'border-style: dotted;');
           });
-          divElem.addEventListener('mouseout', (event) => {
+          this.renderer.listen(divElem, 'mouseout', (event) => {
             event.target.setAttribute('style', '');
           });
-          divElem.addEventListener('click', (event) => {
+          this.renderer.listen(divElem, 'click', (event) => {
             console.log('pop an options box with selections');
-          })
+          });
         });
       }
     });
