@@ -18,18 +18,14 @@ export class InputFormComponent implements OnInit {
   constructor(private loadUrlService: LoadUrlService, private sanitizer: DomSanitizer, private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
+    
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url);
-  }
-
-  ngAfterViewInit() {
-    // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url);
   }
 
   onSubmit() {
     this.submitted = true;
     this.codeAdded = true;
     this.enableIframe = this.submitted && this.codeAdded;
-    this.loadUrlService.loadUrl(this.inputInfo);
   }
 
   get diagnostic() {
