@@ -1,7 +1,10 @@
-import { Component, OnInit, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, Renderer2, ViewChild, ComponentRef, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { InputInfo } from '../models/input-info';
 import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { element } from 'protractor';
+
+import { ContextMenuComponent } from '../context-menu/context-menu.component';
 
 @Component({
   selector: 'app-input-form',
@@ -15,7 +18,31 @@ export class InputFormComponent implements OnInit {
   enableIframe = false;
   safeURL: SafeResourceUrl;
 
-  constructor(private loadUrlService: LoadUrlService, private sanitizer: DomSanitizer, private el: ElementRef, private renderer: Renderer2) { }
+  @ViewChild('iframe') iframe: ElementRef;
+  compRef: ComponentRef<ContextMenuComponent>;
+
+  contextmenu = false;
+  contextmenuX = 0;
+  contextmenuY = 0;
+
+  //activates the menu with the coordinates
+  onrightClick(event){
+    this.contextmenuX = event.clientX
+    this.contextmenuY = event.clientY
+    this.contextmenu = true;
+  }
+  //disables the menu
+  disableContextMenu(){
+    this.contextmenu= false;
+  }
+
+  constructor(private loadUrlService: LoadUrlService,
+    private sanitizer: DomSanitizer,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private vcRef: ViewContainerRef,
+    private resolver: ComponentFactoryResolver
+  ) { }
 
   ngOnInit() {
     
@@ -42,23 +69,40 @@ export class InputFormComponent implements OnInit {
         element.contentDocument.body.appendChild(iframeScript);
       }
     });
-    
+
+    this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
+      if (element.parentNode.id === 'userFriendlyIframe' && element.contentDocument.body.firstElementChild) {
+        const compFactory = this.resolver.resolveComponentFactory(ContextMenuComponent);
+        this.compRef = this.vcRef.createComponent(compFactory);
+        element.contentDocument.body.appendChild(this.compRef.location.nativeElement);
+      }
+    });
   }
 
   over() {
     this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
       if (element.parentNode.id === 'userFriendlyIframe' && element.contentDocument.body.firstElementChild) {
-        console.log('Mouse Hover');
+        // console.log('Mouse Hover');
         element.contentDocument.querySelectorAll('div').forEach( divElem => {
-          console.log(divElem);
+          // console.log(divElem);
+          const divStyle = divElem.getAttribute('style');
+          // console.log(divStyle);
           this.renderer.listen(divElem, 'mouseover',  (event) => {
-            event.target.setAttribute('style', 'border-style: dotted;');
+            if (divElem.getAttribute('class') !== "contextmenu") {
+              event.target.setAttribute('style', 'border-style: dotted;');
+            }
           });
           this.renderer.listen(divElem, 'mouseout', (event) => {
-            event.target.setAttribute('style', '');
+            if (divElem.getAttribute('class') !== "contextmenu") {
+              event.target.setAttribute('style', '');
+            }
           });
           this.renderer.listen(divElem, 'click', (event) => {
-            console.log('pop an options box with selections');
+            // console.log('pop an options box with selections');
+            this.contextmenuX = event.clientX;
+            this.contextmenuY = event.clientY;
+            this.contextmenu = true;
+            console.log(event.clientX, event.clientY);
           });
         });
       }

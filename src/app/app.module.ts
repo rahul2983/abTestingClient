@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TestPageComponent } from './test-page/test-page.component';
+import { ContextMenuComponent } from './context-menu/context-menu.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TestPageComponent } from './test-page/test-page.component';
     AppComponent,
     RootComponent,
     InputFormComponent,
-    TestPageComponent
+    TestPageComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     FormsModule,
     HttpClientModule
   ],
+  entryComponents: [ContextMenuComponent],
   providers: [LoadUrlService],
   bootstrap: [AppComponent]
 })
