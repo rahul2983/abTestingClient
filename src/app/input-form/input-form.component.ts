@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, HostListener, Renderer2, ViewChild, Comp
 import { InputInfo } from '../models/input-info';
 import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { element } from 'protractor';
 
 import { ContextMenuComponent } from '../context-menu/context-menu.component';
 
@@ -45,14 +44,29 @@ export class InputFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url);
+    this.getAllAbTests();
   }
 
   onSubmit() {
     this.submitted = true;
     this.codeAdded = true;
     this.enableIframe = this.submitted && this.codeAdded;
+    this.addAbTest();
+  }
+
+  addAbTest() {
+    if (this.inputInfo.url && this.inputInfo.codeSnippet) {
+      this.loadUrlService.addAbTest(this.inputInfo).subscribe(res => {
+        console.log('AB Test Info saved in the DB');
+      });
+    }
+  }
+
+  getAllAbTests() {
+    this.loadUrlService.getAllAbTests().subscribe(res => {
+      console.log(res);
+    });
   }
 
   get diagnostic() {
