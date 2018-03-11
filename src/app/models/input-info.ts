@@ -1,6 +1,16 @@
 export class InputInfo {
-    constructor(
-      public url: string,
-      public codeSnippet: string
-    ) { }
+  public url: string;
+  public codeSnippet: string;
+  public testName: string;
+  public testDescription: string;
+  public _id: number;
+  public testType: string;
+
+  constructor() { 
+    this.url = '';
+    this.codeSnippet = '';
+    this.testName = '';
+    this.testDescription = '';
   }
+
+}
