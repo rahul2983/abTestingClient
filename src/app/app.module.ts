@@ -12,6 +12,9 @@ import { RootComponent } from './root/root.component';
 import { InputFormComponent } from './input-form/input-form.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { ContextMenuComponent } from './context-menu/context-menu.component';
+import { HomeComponent } from './home/home.component';
+import { CreateTestComponent } from './create-test/create-test.component';
+import { CustomCodeViewComponent } from './custom-code-view/custom-code-view.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { ContextMenuComponent } from './context-menu/context-menu.component';
     RootComponent,
     InputFormComponent,
     TestPageComponent,
-    ContextMenuComponent
+    ContextMenuComponent,
+    HomeComponent,
+    CreateTestComponent,
+    CustomCodeViewComponent
   ],
   imports: [
     BrowserModule,

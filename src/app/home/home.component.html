@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Welcome to AB Test Creator</h1>
+  <p>Create a New Test by clicking below or edit an exsiting one from the list below</p>
+  <span>
+    <a routerLink='/create'>
+      <button type="button" class="btn btn-primary">Create</button>
+    </a>
+  </span>
+</div>
+<br/>
+<div class="container">
+  <p>Current Tests in the system</p>
+  <table>
+    <thead>
+      <td>Name</td>
+      <td>Description</td>
+      <td>URL</td>
+      <td>Edit</td>
+    </thead>
+    <tbody *ngFor="let abTest of abTests">
+      <td>{{ abTest.testName }}</td>
+      <td>{{ abTest.testDescription }}</td>
+      <td>{{ abTest.url }}</td>
+      <td>
+        <button type="button" class="btn btn-primary">Edit</button>
+      </td>
+    </tbody>
+  </table>
+</div>

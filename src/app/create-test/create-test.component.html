@@ -1,0 +1,40 @@
+<div class="container">
+    <!-- <div [hidden]="submitted"> -->
+      <h4>Create your AB Test</h4>
+      <form (ngSubmit)="onSubmit()" #InputForm="ngForm" id="inputForm">
+        <div class="form-group">
+          <label for="name">URL</label>
+          <input type="text" class="form-control" id="name" name="urlName" required [(ngModel)]="inputInfo.url" #url="ngModel">
+          <div [hidden]="url.valid || url.pristine" class="alert alert-danger">
+            URL is required
+          </div>
+          <!-- TODO: remove this: {{inputInfo.url}} -->
+  
+          <br/>
+  
+          <label for="testName">Name</label>
+          <input type="text" class="form-control" id="testName" name="testName" required [(ngModel)]="inputInfo.testName" #testName="ngModel">
+          <div [hidden]="testName.valid || testName.pristine" class="alert alert-danger">
+            Test Name is required
+          </div>
+          <!-- TODO: remove this: {{inputInfo.testName}} -->
+  
+          <br/>
+  
+          <label for="testDescription">Description</label>
+          <input type="text" class="form-control" id="testDescription" name="testDescription" required [(ngModel)]="inputInfo.testDescription" #testDescription="ngModel">
+          <div [hidden]="testDescription.valid || testDescription.pristine" class="alert alert-danger">
+            Test Description is required
+          </div>
+          <!-- TODO: remove this: {{inputInfo.testDescription}} -->
+  
+        </div>
+        
+        <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Create</button>
+      </form>
+  
+      <br/>
+  
+    <!-- </div> -->
+  </div>
+  <br/>

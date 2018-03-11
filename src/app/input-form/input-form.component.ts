@@ -11,7 +11,8 @@ import { ContextMenuComponent } from '../context-menu/context-menu.component';
   styleUrls: ['./input-form.component.css']
 })
 export class InputFormComponent implements OnInit {
-  inputInfo = new InputInfo('http://localhost:4200/testPage.html', 'console.log("Hello World");');
+  // inputInfo = new InputInfo('http://localhost:4200/testPage.html', 'console.log("Hello World");', 'Your-ABTest', 'You Test Decription Here', 0);
+  inputInfo = new InputInfo();
   submitted = false;
   codeAdded = false;
   enableIframe = false;
@@ -56,7 +57,8 @@ export class InputFormComponent implements OnInit {
   }
 
   addAbTest() {
-    if (this.inputInfo.url && this.inputInfo.codeSnippet) {
+    if (this.inputInfo.url && this.inputInfo.codeSnippet && this.inputInfo.testName && this.inputInfo.testDescription) {
+      console.log(this.inputInfo);
       this.loadUrlService.addAbTest(this.inputInfo).subscribe(res => {
         console.log('AB Test Info saved in the DB');
       });
@@ -74,16 +76,6 @@ export class InputFormComponent implements OnInit {
   }
 
   @HostListener('onload') onLoad() {
-    this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
-      if (element.parentNode.id === 'variationIframe' && element.contentDocument.body.firstElementChild) {
-        // console.log(element.parentNode.id);
-        // console.log(element.contentDocument.body.firstElementChild);
-        let iframeScript = element.contentDocument.createElement('script');
-        iframeScript.innerText = this.inputInfo.codeSnippet;
-        element.contentDocument.body.appendChild(iframeScript);
-      }
-    });
-
     this.el.nativeElement.querySelectorAll('iframe').forEach(element => {
       if (element.parentNode.id === 'userFriendlyIframe' && element.contentDocument.body.firstElementChild) {
         const compFactory = this.resolver.resolveComponentFactory(ContextMenuComponent);

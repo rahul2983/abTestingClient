@@ -12,11 +12,31 @@
 
         <br/>
 
+        <label for="testName">Name your AB Test</label>
+        <input type="text" class="form-control" id="testName" name="testName" required [(ngModel)]="inputInfo.testName" #testName="ngModel">
+        <div [hidden]="testName.valid || testName.pristine" class="alert alert-danger">
+          Test Name is required
+        </div>
+        <!-- TODO: remove this: {{inputInfo.testName}} -->
+
+        <br/>
+
+        <label for="testDescription">Describe your AB Test</label>
+        <input type="text" class="form-control" id="testDescription" name="testDescription" required [(ngModel)]="inputInfo.testDescription" #testDescription="ngModel">
+        <div [hidden]="testDescription.valid || testDescription.pristine" class="alert alert-danger">
+          Test Description is required
+        </div>
+        <!-- TODO: remove this: {{inputInfo.testDescription}} -->
+
+        <br/>
+
         <textarea rows="4" cols="50" name="codeBox" form="inputForm" required [(ngModel)]="inputInfo.codeSnippet" #codeSnippet="ngModel"></textarea>
         <div [hidden]="codeSnippet.valid || codeSnippet.pristine" class="alert alert-danger">
           Code Snippet is required but no <code>script tag</code> needed
         </div>
         <!-- TODO: remove this: {{inputInfo.codeSnippet}} -->
+
+       
 
       </div>
       <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Create</button>
@@ -27,13 +47,6 @@
   <!-- </div> -->
 </div>
 <br/>
-
-<div *ngIf="enableIframe" class="container" id="variationIframe">
-    <h4>Variation Requested</h4>
-<!-- <div class="container"> -->
-  <iframe (load)="onLoad()" width="100%" height="300px" [src]="safeURL"></iframe>
-  <!-- TODO: Disable all links within iframe -->
-</div>
 
 <div *ngIf="enableIframe" class="container"  id="originalIframe" >
     <h4>Original Webpage</h4>
@@ -50,12 +63,6 @@
   <!-- TODO: Disable all links within iframe -->
 </div>
 <!-- {{ diagnostic }} -->
-
-
-
-<div *ngIf="codeAdded" class="container">
-  Loaded DOM
-</div>
 
 <!-- your whole html is wrapped in a div so anywhere you click you disable contextmenu,
 also the div is responsible for suppressing the default browser contextmenu -->
