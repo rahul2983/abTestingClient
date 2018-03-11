@@ -23,11 +23,9 @@ export class CustomCodeViewComponent implements OnInit {
 
   ngOnInit() {
     this.loadUrlService.currentInputInfo.subscribe(res => {
-      console.log('From Current Input Info');
       console.log(res);
       this.inputInfo = res;
     });
-    console.log(this.inputInfo._id);
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url);
   }
 
@@ -51,7 +49,7 @@ export class CustomCodeViewComponent implements OnInit {
 
   @HostListener('onload') onLoad() {
     this.iframeElem = this.el.nativeElement.querySelector('iframe');
-    if (this.iframeElem.contentDocument.firstElementChild) {
+    if (this.iframeElem.contentDocument.body.firstElementChild) {
       // Need to add code to add Script Tag only when iframe has finished loading
       console.log(this.iframeElem.contentDocument.firstElementChild.firstElementChild);
       let iframeScript = this.iframeElem.contentDocument.createElement('script');

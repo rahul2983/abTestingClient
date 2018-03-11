@@ -1,4 +1,7 @@
 .contextmenu{
+    /* position: absolute; */
     position: absolute;
-    /* position: relative; */
+    border-style: dashed;
+    color: white;
+    background-color: tomato;
 }

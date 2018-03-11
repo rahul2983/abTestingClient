@@ -4,6 +4,7 @@ export class InputInfo {
   public testName: string;
   public testDescription: string;
   public _id: number;
+  public testType: string;
 
   constructor() { 
     this.url = '';
