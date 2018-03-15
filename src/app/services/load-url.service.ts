@@ -29,9 +29,16 @@ export class LoadUrlService {
   }
 
   updateAbTest(inputInfo: InputInfo) {
+    
     return this.http.post('/api/abtest/updateAbTest', {
       id: inputInfo._id,
       codeSnippet: inputInfo.codeSnippet
+    });
+  }
+
+  getDOMUrl(url: string) {
+    return this.http.get(url, {
+      responseType: 'text',
     });
   }
 }

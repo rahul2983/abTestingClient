@@ -12,12 +12,13 @@ export class CreateTestComponent implements OnInit {
   submitted: boolean;
   inputInfo: InputInfo;
   testTypes: Array<String>;
+  clicked: boolean = false;
  
   constructor(private loadUrlService: LoadUrlService, private router: Router) { }
 
   ngOnInit() {
     this.loadUrlService.currentInputInfo.subscribe(res => this.inputInfo = res);
-    this.testTypes = ['Custom Code', 'Visual Editor'];
+    this.testTypes = ['Custom Code', 'Visual Editor', 'WYSIWYG'];
   }
 
   onSubmit() {
@@ -27,7 +28,9 @@ export class CreateTestComponent implements OnInit {
     if (this.inputInfo.testType === 'Custom Code') {
       this.router.navigateByUrl('customCodeView');
     } else if (this.inputInfo.testType === 'Visual Editor') {
-      this.router.navigateByUrl('visualEditorView')
+      this.router.navigateByUrl('visualEditorView');
+    } else if (this.inputInfo.testType === 'WYSIWYG') {
+      this.router.navigateByUrl('wysiwyg');
     }
   }
 
@@ -39,5 +42,9 @@ export class CreateTestComponent implements OnInit {
         console.log('New ID is ', this.inputInfo._id);
       });
     }
+  }
+
+  onclick() {
+    this.clicked = true;
   }
 }

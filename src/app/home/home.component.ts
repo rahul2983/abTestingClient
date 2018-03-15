@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   numAbTests: number;
   abTests: InputInfo;
+  clicked: boolean = false;
 
   constructor(private loadUrlService: LoadUrlService) { }
 
@@ -19,6 +20,10 @@ export class HomeComponent implements OnInit {
       this.numAbTests = Object.keys(res['data']).length;
       this.abTests = res['data'];
     });
+  }
+
+  onclick() {
+    this.clicked = true;
   }
 
 }
