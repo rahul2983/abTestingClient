@@ -22,5 +22,8 @@
 </div>
 
 <div class="container">
-  <button (click)="save()" type="submit" class="btn btn-success">Save</button>
+  <button *ngIf="saved" (click)="save()" type="submit" class="btn btn-success">Save</button>
+  <a [attr.href]="safeURL" target="_blank">
+    <button *ngIf="previewMode" type="submit" class="btn btn-success">Preview</button>
+  </a>
 </div>

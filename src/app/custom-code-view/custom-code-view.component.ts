@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular
 import { InputInfo } from '../models/input-info';
 import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-code-view',
@@ -13,12 +14,15 @@ export class CustomCodeViewComponent implements OnInit {
   iframeElem: any;
   safeURL: SafeResourceUrl;
   enableIframe: boolean;
+  saved: boolean = false;
+  previewMode: boolean = false;
 
   constructor(
     private loadUrlService: LoadUrlService,
     private sanitizer: DomSanitizer,
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,6 +60,8 @@ export class CustomCodeViewComponent implements OnInit {
       iframeScript.innerText = this.inputInfo.codeSnippet;
       this.iframeElem.contentDocument.body.appendChild(iframeScript);
     }
+
+    this.saved = true;
   }
 
   save() {
@@ -71,6 +77,8 @@ export class CustomCodeViewComponent implements OnInit {
         console.log('AB Test updated with Cookie and QueryParam Values');
       });
     }
+
+    this.previewMode = true;
   }
 
   setCookie(cname, cvalue, exdays) {
