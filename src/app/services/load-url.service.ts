@@ -36,6 +36,14 @@ export class LoadUrlService {
     });
   }
 
+  saveAbTest(inputInfo: InputInfo) {
+    
+    return this.http.post('/api/abtest/saveAbTest', {
+      testQueryParam: inputInfo.testQueryParam,
+      testCookie: inputInfo.testCookie
+    });
+  }
+
   getDOMUrl(url: string) {
     return this.http.get(url, {
       responseType: 'text',

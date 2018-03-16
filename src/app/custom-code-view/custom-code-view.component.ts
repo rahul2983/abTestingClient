@@ -58,6 +58,28 @@ export class CustomCodeViewComponent implements OnInit {
     }
   }
 
+  save() {
+    // Add a cookie to the test and store the same in the DB
+    this.inputInfo.testCookie = this.setCookie('testID', this.inputInfo._id, 5);
+    // Add Query Parameter with the DB _id
+    this.inputInfo.testQueryParam = "q=" + this.inputInfo._id;
+    // Add a Unique Identifier call every time you load the page
+    console.log(this.inputInfo.testCookie);
+    console.log(this.inputInfo.testQueryParam);
+    if (this.inputInfo.testCookie && this.inputInfo.testQueryParam) {
+      this.loadUrlService.saveAbTest(this.inputInfo).subscribe(res => {
+        console.log('AB Test updated with Cookie and QueryParam Values');
+      });
+    }
+  }
+
+  setCookie(cname, cvalue, exdays) {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    return document.cookie;
+  }
 }
 
 // document.querySelector('h1').innerText = 'Inside Aprajitas Version of the Page';
