@@ -36,6 +36,8 @@ export class CreateTestComponent implements OnInit {
 
   addAbTest() {
     if (this.inputInfo.url && this.inputInfo.testName && this.inputInfo.testDescription) {
+      // Set the intial status of the test to preview
+      this.inputInfo.testStatus = 'preview';
       this.loadUrlService.addAbTest(this.inputInfo).subscribe(res => {
         console.log('AB Test Info saved in the DB');
         this.inputInfo._id = res['data']._id;

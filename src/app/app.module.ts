@@ -16,6 +16,7 @@ import { CreateTestComponent } from './create-test/create-test.component';
 import { CustomCodeViewComponent } from './custom-code-view/custom-code-view.component';
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { FroalaWusiwygComponent } from './froala-wusiwyg/froala-wusiwyg.component';
+import { ActivateComponent } from './activate/activate.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FroalaWusiwygComponent } from './froala-wusiwyg/froala-wusiwyg.componen
     CreateTestComponent,
     CustomCodeViewComponent,
     VisualEditorComponent,
-    FroalaWusiwygComponent
+    FroalaWusiwygComponent,
+    ActivateComponent
   ],
   imports: [
     BrowserModule,

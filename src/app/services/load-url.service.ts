@@ -20,7 +20,8 @@ export class LoadUrlService {
       url: inputInfo.url,
       codeSnippet: inputInfo.codeSnippet,
       testName: inputInfo.testName,
-      testDescription: inputInfo.testDescription
+      testDescription: inputInfo.testDescription,
+      testStatus: inputInfo.testStatus
     });
   }
 
@@ -32,7 +33,8 @@ export class LoadUrlService {
     
     return this.http.post('/api/abtest/updateAbTest', {
       id: inputInfo._id,
-      codeSnippet: inputInfo.codeSnippet
+      codeSnippet: inputInfo.codeSnippet,
+      testStatus: inputInfo.testStatus
     });
   }
 
@@ -40,7 +42,8 @@ export class LoadUrlService {
     
     return this.http.post('/api/abtest/saveAbTest', {
       testQueryParam: inputInfo.testQueryParam,
-      testCookie: inputInfo.testCookie
+      testCookie: inputInfo.testCookie,
+      testStatus: inputInfo.testStatus
     });
   }
 

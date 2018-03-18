@@ -23,7 +23,12 @@
 
 <div class="container">
   <button *ngIf="saved" (click)="save()" type="submit" class="btn btn-success">Save</button>
-  <a [attr.href]="safeURL" target="_blank">
-    <button *ngIf="previewMode" type="submit" class="btn btn-success">Preview</button>
+  <a [attr.href]="sanitizedPreviewUrl" target="_blank">
+    <button *ngIf="previewMode" type="submit" class="btn btn-success" (click)="onPreviewClick()">Preview</button>
   </a>
+</div>
+
+<div class="container" *ngIf="readyToActivate">
+  <p>Like what you see? Do you want to decide the audience and activate the test? Click Next</p>
+  <button type="submit" class="btn btn-primary" (click)="onNextClick()">Next</button>
 </div>

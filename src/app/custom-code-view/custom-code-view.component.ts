@@ -16,6 +16,9 @@ export class CustomCodeViewComponent implements OnInit {
   enableIframe: boolean;
   saved: boolean = false;
   previewMode: boolean = false;
+  readyToActivate: boolean = false;
+  previewUrl: SafeResourceUrl;
+  sanitizedPreviewUrl: string;
 
   constructor(
     private loadUrlService: LoadUrlService,
@@ -35,9 +38,20 @@ export class CustomCodeViewComponent implements OnInit {
 
   onSubmit() {
     this.enableIframe = true;
-    this.updateAbTest();
+    // this.updateAbTest();
+    console.log('next two consoles inside updateAbTest');
+    console.log(this.inputInfo._id);
+    console.log(this.inputInfo.codeSnippet);
+    if (this.inputInfo.codeSnippet) {
+      if (this.inputInfo._id) {
+        this.loadUrlService.updateAbTest(this.inputInfo).subscribe(res => {
+          console.log('AbTest updated in the DB');
+        });
+      }
+    }
   }
 
+  // Are we still using this next function?
   updateAbTest() {
     console.log('next two consoles inside updateAbTest');
     console.log(this.inputInfo._id);
@@ -57,13 +71,18 @@ export class CustomCodeViewComponent implements OnInit {
       // Need to add code to add Script Tag only when iframe has finished loading
       console.log(this.iframeElem.contentDocument.firstElementChild.firstElementChild);
       let iframeScript = this.iframeElem.contentDocument.createElement('script');
+      iframeScript.setAttribute("type", "text/javascript");
+      iframeScript.setAttribute("id", "fromABTesting");
       iframeScript.innerText = this.inputInfo.codeSnippet;
       this.iframeElem.contentDocument.body.appendChild(iframeScript);
     }
 
-    this.saved = true;
+    // this.saved = true;
+    this.previewMode = true;
+    this.readyToActivate = true;
   }
 
+  // Mostly this logic goes to a new page where u activate a test based on audience and traffic
   save() {
     // Add a cookie to the test and store the same in the DB
     this.inputInfo.testCookie = this.setCookie('testID', this.inputInfo._id, 5);
@@ -72,13 +91,29 @@ export class CustomCodeViewComponent implements OnInit {
     // Add a Unique Identifier call every time you load the page
     console.log(this.inputInfo.testCookie);
     console.log(this.inputInfo.testQueryParam);
+
+    // Set the test status to an appropriate value
+    this.inputInfo.testStatus = 'active';
+
     if (this.inputInfo.testCookie && this.inputInfo.testQueryParam) {
       this.loadUrlService.saveAbTest(this.inputInfo).subscribe(res => {
         console.log('AB Test updated with Cookie and QueryParam Values');
       });
     }
 
-    this.previewMode = true;
+    // this.previewMode = true;
+  }
+
+  onPreviewClick() {
+    // Launch the URL version with QueryParams
+    // Add Query Parameter with the DB _id
+    this.inputInfo.testQueryParam = "testPreviewID=" + this.inputInfo._id;
+    this.previewUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputInfo.url + '?' + this.inputInfo.testQueryParam);
+    this.sanitizedPreviewUrl = this.previewUrl['changingThisBreaksApplicationSecurity'];
+  }
+
+  onNextClick() {
+    this.router.navigateByUrl('activate');
   }
 
   setCookie(cname, cvalue, exdays) {
@@ -92,3 +127,7 @@ export class CustomCodeViewComponent implements OnInit {
 
 // document.querySelector('h1').innerText = 'Inside Aprajitas Version of the Page';
 // console.log("Hello World");
+// Similar logic as below to remove the code when re-visiting a saved test
+// if (document.body.querySelector("#fromABTesting")) {
+//   document.body.querySelector("#fromABTesting").remove();
+// }

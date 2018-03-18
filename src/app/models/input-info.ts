@@ -7,6 +7,7 @@ export class InputInfo {
   public testType: string;
   public testQueryParam: string;
   public testCookie: string;
+  public testStatus: string;
 
   constructor() { 
     this.url = '';
@@ -15,6 +16,7 @@ export class InputInfo {
     this.testDescription = '';
     this.testQueryParam = '';
     this.testCookie = '';
+    this.testStatus = '';
   }
 
 }
