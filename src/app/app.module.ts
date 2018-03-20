@@ -17,6 +17,8 @@ import { CustomCodeViewComponent } from './custom-code-view/custom-code-view.com
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { FroalaWusiwygComponent } from './froala-wusiwyg/froala-wusiwyg.component';
 import { ActivateComponent } from './activate/activate.component';
+import { OriginalIframeComponent } from './original-iframe/original-iframe.component';
+import { VariationIframeComponent } from './variation-iframe/variation-iframe.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ActivateComponent } from './activate/activate.component';
     CustomCodeViewComponent,
     VisualEditorComponent,
     FroalaWusiwygComponent,
-    ActivateComponent
+    ActivateComponent,
+    OriginalIframeComponent,
+    VariationIframeComponent
   ],
   imports: [
     BrowserModule,

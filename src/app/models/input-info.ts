@@ -8,6 +8,8 @@ export class InputInfo {
   public testQueryParam: string;
   public testCookie: string;
   public testStatus: string;
+  public testTraffic: number;
+  public deviceType: string;
 
   constructor() { 
     this.url = '';
@@ -17,6 +19,8 @@ export class InputInfo {
     this.testQueryParam = '';
     this.testCookie = '';
     this.testStatus = '';
+    this.testTraffic = 0;
+    this.deviceType = '';
   }
 
 }

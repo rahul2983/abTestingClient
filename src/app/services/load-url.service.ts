@@ -25,12 +25,12 @@ export class LoadUrlService {
     });
   }
 
+  // maybe change this to a GET request
   getAllAbTests() {
     return this.http.post('/api/abtest/getAllAbTests', {});
   }
 
   updateAbTest(inputInfo: InputInfo) {
-    
     return this.http.post('/api/abtest/updateAbTest', {
       id: inputInfo._id,
       codeSnippet: inputInfo.codeSnippet,
@@ -39,12 +39,27 @@ export class LoadUrlService {
   }
 
   saveAbTest(inputInfo: InputInfo) {
-    
     return this.http.post('/api/abtest/saveAbTest', {
+      id: inputInfo._id,
       testQueryParam: inputInfo.testQueryParam,
       testCookie: inputInfo.testCookie,
       testStatus: inputInfo.testStatus
     });
+  }
+
+  saveAudienceInfo(inputInfo: InputInfo) {
+    return this.http.post('/api/abtest/saveAudienceInfo', {
+      id: inputInfo._id,
+      testStatus: inputInfo.testStatus,
+      testTraffic: inputInfo.testTraffic,
+      deviceType: inputInfo.deviceType
+    });
+  }
+
+  deleteAbTest(inputInfo: InputInfo) {
+    return this.http.post('/api/abtest/deleteAbTest', {
+      id: inputInfo._id      
+    })
   }
 
   getDOMUrl(url: string) {

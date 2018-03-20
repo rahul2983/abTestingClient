@@ -1,3 +1,43 @@
-<p>
-  activate works!
-</p>
+<div class="container">
+  <h4>Activate your AB Test</h4>
+  <form (ngSubmit)="onSubmit()" #InputForm="ngForm" id="inputForm">
+    <div class="form-group">
+      <label for="traffic">Enter Traffic % for the Test</label>
+      <input type="text" class="form-control" id="traffic" name="testTrafficName" required [(ngModel)]="inputInfo.testTraffic" #testTraffic="ngModel">
+      <div [hidden]="testTraffic.valid || testTraffic.pristine" class="alert alert-danger">
+        Traffic % is required
+      </div>
+      <!-- TODO: remove this: {{inputInfo.testTraffic}} -->
+  
+      <br/>
+
+      <!-- Future Code for GEO -->
+      <!-- <label for="deviceTypeMethod">Select Type of Device</label>
+      <br/>
+      <select class="form-control" id="deviceTypeMethod" [(ngModel)]="inputInfo.deviceType" name="deviceType" #deviceType="ngModel">
+        <option *ngFor="let deviceType of deviceTypes" value="{{ deviceType }}">
+          {{ deviceType }}
+        </option>
+      </select>
+      <div [hidden]="deviceType.valid || deviceType.pristine" class="alert alert-danger">
+          Test Type is required
+      </div> -->
+
+      <br/>
+
+      <label for="deviceType">Select Type of Device</label>
+      <br/>
+      <select class="form-control" id="deviceType" [(ngModel)]="inputInfo.deviceType" name="deviceType" #deviceType="ngModel">
+        <option *ngFor="let deviceType of deviceTypes" value="{{ deviceType }}">
+          {{ deviceType }}
+        </option>
+      </select>
+      <div [hidden]="deviceType.valid || deviceType.pristine" class="alert alert-danger">
+          Device Type is required
+      </div>
+  
+    </div>
+        
+    <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Activate</button>
+  </form>
+</div>

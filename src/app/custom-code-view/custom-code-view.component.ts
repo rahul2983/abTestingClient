@@ -4,6 +4,9 @@ import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
+import { OriginalIframeComponent } from '../original-iframe/original-iframe.component';
+import { VariationIframeComponent } from '../variation-iframe/variation-iframe.component';
+
 @Component({
   selector: 'app-custom-code-view',
   templateUrl: './custom-code-view.component.html',
@@ -19,6 +22,9 @@ export class CustomCodeViewComponent implements OnInit {
   readyToActivate: boolean = false;
   previewUrl: SafeResourceUrl;
   sanitizedPreviewUrl: string;
+
+  originalRequested: boolean = false;
+  variationRequested: boolean = false;
 
   constructor(
     private loadUrlService: LoadUrlService,
@@ -52,18 +58,18 @@ export class CustomCodeViewComponent implements OnInit {
   }
 
   // Are we still using this next function?
-  updateAbTest() {
-    console.log('next two consoles inside updateAbTest');
-    console.log(this.inputInfo._id);
-    console.log(this.inputInfo.codeSnippet);
-    if (this.inputInfo.codeSnippet) {
-      if (this.inputInfo._id) {
-        this.loadUrlService.updateAbTest(this.inputInfo).subscribe(res => {
-          console.log('AbTest updated in the DB');
-        });
-      }
-    }
-  }
+  // updateAbTest() {
+  //   console.log('next two consoles inside updateAbTest');
+  //   console.log(this.inputInfo._id);
+  //   console.log(this.inputInfo.codeSnippet);
+  //   if (this.inputInfo.codeSnippet) {
+  //     if (this.inputInfo._id) {
+  //       this.loadUrlService.updateAbTest(this.inputInfo).subscribe(res => {
+  //         console.log('AbTest updated in the DB');
+  //       });
+  //     }
+  //   }
+  // }
 
   @HostListener('onload') onLoad() {
     this.iframeElem = this.el.nativeElement.querySelector('iframe');
@@ -82,28 +88,6 @@ export class CustomCodeViewComponent implements OnInit {
     this.readyToActivate = true;
   }
 
-  // Mostly this logic goes to a new page where u activate a test based on audience and traffic
-  save() {
-    // Add a cookie to the test and store the same in the DB
-    this.inputInfo.testCookie = this.setCookie('testID', this.inputInfo._id, 5);
-    // Add Query Parameter with the DB _id
-    this.inputInfo.testQueryParam = "q=" + this.inputInfo._id;
-    // Add a Unique Identifier call every time you load the page
-    console.log(this.inputInfo.testCookie);
-    console.log(this.inputInfo.testQueryParam);
-
-    // Set the test status to an appropriate value
-    this.inputInfo.testStatus = 'active';
-
-    if (this.inputInfo.testCookie && this.inputInfo.testQueryParam) {
-      this.loadUrlService.saveAbTest(this.inputInfo).subscribe(res => {
-        console.log('AB Test updated with Cookie and QueryParam Values');
-      });
-    }
-
-    // this.previewMode = true;
-  }
-
   onPreviewClick() {
     // Launch the URL version with QueryParams
     // Add Query Parameter with the DB _id
@@ -115,16 +99,19 @@ export class CustomCodeViewComponent implements OnInit {
   onNextClick() {
     this.router.navigateByUrl('activate');
   }
+  
+  onOriginalSubmit() {
+    this.originalRequested = true;
+    this.variationRequested = false;
+  }
 
-  setCookie(cname, cvalue, exdays) {
-    let d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    return document.cookie;
+  onVariationSubmit() {
+    this.originalRequested = false;
+    this.variationRequested = true;
   }
 }
 
+ 
 // document.querySelector('h1').innerText = 'Inside Aprajitas Version of the Page';
 // console.log("Hello World");
 // Similar logic as below to remove the code when re-visiting a saved test

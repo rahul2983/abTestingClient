@@ -15,11 +15,20 @@
 
 <br/>
 
+<!-- Move the iframe code below into app-original-iframe and app-variation-iframe components -->
 <div *ngIf="enableIframe" class="container">
   <h4>Variation Requested</h4>
   <iframe (load)="onLoad()" width="100%" height="300px" [src]="safeURL"></iframe>
   <!-- TODO: Disable all links within iframe -->
 </div>
+
+<div class="container">
+  <button type="submit" (click)="onOriginalSubmit()" class="btn btn-primary">View Original</button>
+  <button type="submit" (click)="onVariationSubmit()" class="btn btn-secondary">View Variation</button>
+  <app-original-iframe *ngIf="originalRequested"></app-original-iframe>
+  <app-variation-iframe *ngIf="variationRequested"></app-variation-iframe>
+</div>
+
 
 <div class="container">
   <button *ngIf="saved" (click)="save()" type="submit" class="btn btn-success">Save</button>

@@ -16,7 +16,10 @@
       <tr>
         <td>Name</td>
         <td>Description</td>
+        <td>Status</td>
         <td>URL</td>
+        <td>Traffic</td>
+        <td>Device Type</td>
         <td>Edit</td>
       </tr>
     </thead>
@@ -24,9 +27,15 @@
       <tr>
         <td>{{ abTest.testName }}</td>
         <td>{{ abTest.testDescription }}</td>
+        <td>{{ abTest.testStatus }}</td>
         <td>{{ abTest.url }}</td>
+        <td>{{ abTest.testTraffic }}</td>
+        <td>{{ abTest.deviceType }}</td>
         <td>
           <button type="button" class="btn btn-primary">Edit</button>
+        </td>
+        <td>
+          <button type="button" (click)="deleteAbTest()" class="btn btn-primary">Delete</button>
         </td>
       </tr>
     </tbody>
