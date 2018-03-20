@@ -44,7 +44,10 @@ export class CustomCodeViewComponent implements OnInit {
 
   onSubmit() {
     this.enableIframe = true;
-    // this.updateAbTest();
+    this.updateAbTest();
+  }
+
+  updateAbTest() {
     console.log('next two consoles inside updateAbTest');
     console.log(this.inputInfo._id);
     console.log(this.inputInfo.codeSnippet);
@@ -56,20 +59,6 @@ export class CustomCodeViewComponent implements OnInit {
       }
     }
   }
-
-  // Are we still using this next function?
-  // updateAbTest() {
-  //   console.log('next two consoles inside updateAbTest');
-  //   console.log(this.inputInfo._id);
-  //   console.log(this.inputInfo.codeSnippet);
-  //   if (this.inputInfo.codeSnippet) {
-  //     if (this.inputInfo._id) {
-  //       this.loadUrlService.updateAbTest(this.inputInfo).subscribe(res => {
-  //         console.log('AbTest updated in the DB');
-  //       });
-  //     }
-  //   }
-  // }
 
   @HostListener('onload') onLoad() {
     this.iframeElem = this.el.nativeElement.querySelector('iframe');

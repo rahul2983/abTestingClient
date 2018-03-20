@@ -31,7 +31,9 @@
 
 
 <div class="container">
+  <!-- Need to remove the Save Button -->
   <button *ngIf="saved" (click)="save()" type="submit" class="btn btn-success">Save</button>
+  
   <a [attr.href]="sanitizedPreviewUrl" target="_blank">
     <button *ngIf="previewMode" type="submit" class="btn btn-success" (click)="onPreviewClick()">Preview</button>
   </a>

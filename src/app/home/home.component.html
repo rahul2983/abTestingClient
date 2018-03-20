@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let abTest of abTests">
-      <tr>
+      <tr #tableRow>
         <td>{{ abTest.testName }}</td>
         <td>{{ abTest.testDescription }}</td>
         <td>{{ abTest.testStatus }}</td>
