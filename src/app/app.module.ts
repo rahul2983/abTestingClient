@@ -17,8 +17,8 @@ import { CustomCodeViewComponent } from './custom-code-view/custom-code-view.com
 import { VisualEditorComponent } from './visual-editor/visual-editor.component';
 import { FroalaWusiwygComponent } from './froala-wusiwyg/froala-wusiwyg.component';
 import { ActivateComponent } from './activate/activate.component';
-import { OriginalIframeComponent } from './original-iframe/original-iframe.component';
-import { VariationIframeComponent } from './variation-iframe/variation-iframe.component';
+import { TestControlComponent } from './test-control/test-control.component';
+import { TestVariationComponent } from './test-variation/test-variation.component';
 
 
 @NgModule({
@@ -33,8 +33,8 @@ import { VariationIframeComponent } from './variation-iframe/variation-iframe.co
     VisualEditorComponent,
     FroalaWusiwygComponent,
     ActivateComponent,
-    OriginalIframeComponent,
-    VariationIframeComponent
+    TestControlComponent,
+    TestVariationComponent
   ],
   imports: [
     BrowserModule,

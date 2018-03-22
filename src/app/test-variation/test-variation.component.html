@@ -1,0 +1,5 @@
+<div *ngIf="enableIframe" class="container">
+  <h4>Variation Requested</h4>
+  <iframe (load)="onLoad()" width="100%" height="300px" [src]="safeUrl"></iframe>
+  <!-- TODO: Disable all links within iframe -->
+</div>

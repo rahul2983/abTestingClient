@@ -1,11 +1,8 @@
-import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, Renderer2, Output, Input } from '@angular/core';
 import { InputInfo } from '../models/input-info';
 import { LoadUrlService } from '../services/load-url.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-
-import { OriginalIframeComponent } from '../original-iframe/original-iframe.component';
-import { VariationIframeComponent } from '../variation-iframe/variation-iframe.component';
 
 @Component({
   selector: 'app-custom-code-view',
@@ -16,14 +13,13 @@ export class CustomCodeViewComponent implements OnInit {
   inputInfo: InputInfo;
   iframeElem: any;
   safeURL: SafeResourceUrl;
-  enableIframe: boolean;
-  saved: boolean = false;
+  @Output() enableIframe: boolean;
   previewMode: boolean = false;
   readyToActivate: boolean = false;
   previewUrl: SafeResourceUrl;
   sanitizedPreviewUrl: string;
 
-  originalRequested: boolean = false;
+  originalRequested: boolean = true;
   variationRequested: boolean = false;
 
   constructor(
@@ -60,21 +56,12 @@ export class CustomCodeViewComponent implements OnInit {
     }
   }
 
-  @HostListener('onload') onLoad() {
-    this.iframeElem = this.el.nativeElement.querySelector('iframe');
-    if (this.iframeElem.contentDocument.body.firstElementChild) {
-      // Need to add code to add Script Tag only when iframe has finished loading
-      console.log(this.iframeElem.contentDocument.firstElementChild.firstElementChild);
-      let iframeScript = this.iframeElem.contentDocument.createElement('script');
-      iframeScript.setAttribute("type", "text/javascript");
-      iframeScript.setAttribute("id", "fromABTesting");
-      iframeScript.innerText = this.inputInfo.codeSnippet;
-      this.iframeElem.contentDocument.body.appendChild(iframeScript);
-    }
+  onNotifyPreview(previewMode: boolean) {
+    this.previewMode = previewMode;
+  }
 
-    // this.saved = true;
-    this.previewMode = true;
-    this.readyToActivate = true;
+  onReadyToActivate(readyToActivate: boolean) {
+    this.readyToActivate = readyToActivate;
   }
 
   onPreviewClick() {

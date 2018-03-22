@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OriginalIframeComponent } from './original-iframe.component';
+import { TestControlComponent } from './test-control.component';
 
-describe('OriginalIframeComponent', () => {
-  let component: OriginalIframeComponent;
-  let fixture: ComponentFixture<OriginalIframeComponent>;
+describe('TestControlComponent', () => {
+  let component: TestControlComponent;
+  let fixture: ComponentFixture<TestControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OriginalIframeComponent ]
+      declarations: [ TestControlComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OriginalIframeComponent);
+    fixture = TestBed.createComponent(TestControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

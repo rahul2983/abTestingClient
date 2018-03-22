@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VariationIframeComponent } from './variation-iframe.component';
+import { TestVariationComponent } from './test-variation.component';
 
-describe('VariationIframeComponent', () => {
-  let component: VariationIframeComponent;
-  let fixture: ComponentFixture<VariationIframeComponent>;
+describe('TestVariationComponent', () => {
+  let component: TestVariationComponent;
+  let fixture: ComponentFixture<TestVariationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VariationIframeComponent ]
+      declarations: [ TestVariationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VariationIframeComponent);
+    fixture = TestBed.createComponent(TestVariationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
