@@ -10,6 +10,7 @@ export class InputInfo {
   public testStatus: string;
   public testTraffic: number;
   public deviceType: string;
+  public modifiedDom: string;
 
   constructor() { 
     this.url = '';
@@ -21,6 +22,7 @@ export class InputInfo {
     this.testStatus = '';
     this.testTraffic = 0;
     this.deviceType = '';
+    this.modifiedDom = '';
   }
 
 }

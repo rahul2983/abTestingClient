@@ -15,13 +15,14 @@ export class LoadUrlService {
     this.inputInfo.next(inputInfo);
   }
 
-  addAbTest(inputInfo: InputInfo) {
+  createAbTest(inputInfo: InputInfo) {
     return this.http.post('/api/abtest/create', {
       url: inputInfo.url,
       codeSnippet: inputInfo.codeSnippet,
       testName: inputInfo.testName,
       testDescription: inputInfo.testDescription,
-      testStatus: inputInfo.testStatus
+      testStatus: inputInfo.testStatus,
+      testType: inputInfo.testType
     });
   }
 
@@ -34,7 +35,8 @@ export class LoadUrlService {
     return this.http.post('/api/abtest/updateAbTest', {
       id: inputInfo._id,
       codeSnippet: inputInfo.codeSnippet,
-      testStatus: inputInfo.testStatus
+      testStatus: inputInfo.testStatus,
+      modifiedDom: inputInfo.modifiedDom
     });
   }
 

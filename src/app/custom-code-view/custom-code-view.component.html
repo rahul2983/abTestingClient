@@ -7,30 +7,28 @@
       <div [hidden]="codeSnippet.valid || codeSnippet.pristine" class="alert alert-danger">
         Code Snippet is required but no <code>script tag</code> needed
       </div>
-      <!-- TODO: remove this: {{inputInfo.codeSnippet}} -->  
     </div>
     <button type="submit" class="btn btn-success" [disabled]="!InputForm.form.valid">Save</button>
   </form>
 </div>
 
 <br/>
-
 <div class="container">
-  
   <app-test-control  *ngIf="originalRequested"></app-test-control>
   <app-test-variation (readyToActivate)="onReadyToActivate($event)" (previewMode)="onNotifyPreview($event)" [enableIframe]="enableIframe" *ngIf="variationRequested"></app-test-variation>
   <button type="submit" (click)="onOriginalSubmit()" class="btn btn-primary">View Original</button>
   <button type="submit" (click)="onVariationSubmit()" class="btn btn-secondary">View Variation</button>
 </div>
 
-
+<br/>
 <div class="container">
   <a [attr.href]="sanitizedPreviewUrl" target="_blank">
     <button *ngIf="previewMode" type="submit" class="btn btn-success" (click)="onPreviewClick()">Preview</button>
   </a>
 </div>
 
-<div class="container">
+<br/>
+<div *ngIf="readyToActivate" class="container">
   <p>Like what you see? Do you want to decide the audience and activate the test? Click Next</p>
-  <button *ngIf="readyToActivate" type="submit" class="btn btn-primary" (click)="onNextClick()">Next</button>
+  <button type="submit" class="btn btn-success" (click)="onNextClick()">Next</button>
 </div>

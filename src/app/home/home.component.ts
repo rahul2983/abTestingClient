@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   getAllAbTests() {
     this.loadUrlService.getAllAbTests().subscribe(res => {
       this.abTests = res['data'];
-      console.log(res['data']);
     }); 
   }
 
