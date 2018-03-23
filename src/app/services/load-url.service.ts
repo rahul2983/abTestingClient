@@ -40,15 +40,6 @@ export class LoadUrlService {
     });
   }
 
-  saveAbTest(inputInfo: InputInfo) {
-    return this.http.post('/api/abtest/saveAbTest', {
-      id: inputInfo._id,
-      testQueryParam: inputInfo.testQueryParam,
-      testCookie: inputInfo.testCookie,
-      testStatus: inputInfo.testStatus
-    });
-  }
-
   saveAudienceInfo(inputInfo: InputInfo) {
     return this.http.post('/api/abtest/saveAudienceInfo', {
       id: inputInfo._id,
@@ -64,6 +55,7 @@ export class LoadUrlService {
     })
   }
 
+  // Used to populate the DOM inside the froala editor
   getDOMUrl(url: string) {
     return this.http.get(url, {
       responseType: 'text',

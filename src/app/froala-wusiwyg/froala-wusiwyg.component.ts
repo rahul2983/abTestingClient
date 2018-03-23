@@ -10,18 +10,16 @@ import { Router } from '@angular/router';
 })
 export class FroalaWusiwygComponent implements OnInit {
   inputInfo: InputInfo;
-  domContent: string;
-  readyToActivate: boolean;
+  readyToActivate: boolean = false;
 
   constructor(private loadUrlService: LoadUrlService, private router: Router) { }
 
   ngOnInit() {
     this.loadUrlService.currentInputInfo.subscribe(res => {
       this.inputInfo = res;
-      console.log(this.inputInfo);
+      // console.log(this.inputInfo);
       this.loadUrlService.getDOMUrl(this.inputInfo.url).subscribe(data => {
-        console.log(data);
-        this.domContent = data;
+        // console.log(data);
         this.setHtml(data);
       });
     });
@@ -35,7 +33,7 @@ export class FroalaWusiwygComponent implements OnInit {
 
   getHtml() {
     this.inputInfo.modifiedDom = (<any>$("#froala-editor")).froalaEditor('html.get', true);
-    console.log(this.inputInfo.modifiedDom);
+    // console.log(this.inputInfo.modifiedDom);
     this.updateAbTest();
     this.readyToActivate = true;
   }
@@ -45,9 +43,7 @@ export class FroalaWusiwygComponent implements OnInit {
   }
 
   updateAbTest() {
-    console.log('next two consoles inside updateAbTest');
-    console.log(this.inputInfo._id);
-    console.log(this.inputInfo.modifiedDom);
+    // console.log(this.inputInfo.modifiedDom);
     if (this.inputInfo.modifiedDom) {
       if (this.inputInfo._id) {
         this.loadUrlService.updateAbTest(this.inputInfo).subscribe(res => {
