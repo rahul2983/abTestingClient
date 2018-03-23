@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoadUrlService } from '../services/load-url.service';
 import { InputInfo } from '../models/input-info';
 
-import { SimpleChanges } from '@angular/core';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
