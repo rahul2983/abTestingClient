@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContextMenuComponent } from './context-menu.component';
+import { FroalaWusiwygComponent } from './froala-wusiwyg.component';
 
-describe('ContextMenuComponent', () => {
-  let component: ContextMenuComponent;
-  let fixture: ComponentFixture<ContextMenuComponent>;
+describe('FroalaWusiwygComponent', () => {
+  let component: FroalaWusiwygComponent;
+  let fixture: ComponentFixture<FroalaWusiwygComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContextMenuComponent ]
+      declarations: [ FroalaWusiwygComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContextMenuComponent);
+    fixture = TestBed.createComponent(FroalaWusiwygComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,16 +8,28 @@ import { InputInfo } from '../models/input-info';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  numAbTests: number;
-  abTests: InputInfo;
+  abTests: Array<InputInfo>;
+  clicked: boolean = false;
 
   constructor(private loadUrlService: LoadUrlService) { }
 
   ngOnInit() {
+    this.getAllAbTests();
+  }
+
+  onclick() {
+    this.clicked = true;
+  }
+
+  getAllAbTests() {
     this.loadUrlService.getAllAbTests().subscribe(res => {
-      this.numAbTests = Object.keys(res['data']).length;
       this.abTests = res['data'];
+    }); 
+  }
+
+  deleteAbTest(rowIndex: number) {
+    this.loadUrlService.deleteAbTest(this.abTests[rowIndex]).subscribe(res => {
+      this.getAllAbTests();  
     });
   }
 

@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-test.component.css']
 })
 export class CreateTestComponent implements OnInit {
-  submitted: boolean;
   inputInfo: InputInfo;
   testTypes: Array<String>;
  
@@ -17,26 +16,28 @@ export class CreateTestComponent implements OnInit {
 
   ngOnInit() {
     this.loadUrlService.currentInputInfo.subscribe(res => this.inputInfo = res);
-    this.testTypes = ['Custom Code', 'Visual Editor'];
+    this.testTypes = ['Custom Code', 'WYSIWYG'];
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.addAbTest();
+    this.createAbTest();
+    // Set Up InputInfo for the first time to be able to subscribe to
     this.loadUrlService.setAbTestCreated(this.inputInfo);
     if (this.inputInfo.testType === 'Custom Code') {
       this.router.navigateByUrl('customCodeView');
-    } else if (this.inputInfo.testType === 'Visual Editor') {
-      this.router.navigateByUrl('visualEditorView')
+    } else if (this.inputInfo.testType === 'WYSIWYG') {
+      this.router.navigateByUrl('wysiwyg');
     }
   }
 
-  addAbTest() {
+  createAbTest() {
     if (this.inputInfo.url && this.inputInfo.testName && this.inputInfo.testDescription) {
-      this.loadUrlService.addAbTest(this.inputInfo).subscribe(res => {
-        console.log('AB Test Info saved in the DB');
+      // Set the intial status of the test to preview
+      this.inputInfo.testStatus = 'preview';
+      this.loadUrlService.createAbTest(this.inputInfo).subscribe(res => {
+        console.log('AB Test Info created in the DB');
         this.inputInfo._id = res['data']._id;
-        console.log('New ID is ', this.inputInfo._id);
+        // console.log('New ID is ', this.inputInfo._id);
       });
     }
   }

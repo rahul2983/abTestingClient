@@ -15,15 +15,18 @@ export class LoadUrlService {
     this.inputInfo.next(inputInfo);
   }
 
-  addAbTest(inputInfo: InputInfo) {
+  createAbTest(inputInfo: InputInfo) {
     return this.http.post('/api/abtest/create', {
       url: inputInfo.url,
       codeSnippet: inputInfo.codeSnippet,
       testName: inputInfo.testName,
-      testDescription: inputInfo.testDescription
+      testDescription: inputInfo.testDescription,
+      testStatus: inputInfo.testStatus,
+      testType: inputInfo.testType
     });
   }
 
+  // maybe change this to a GET request
   getAllAbTests() {
     return this.http.post('/api/abtest/getAllAbTests', {});
   }
@@ -31,7 +34,31 @@ export class LoadUrlService {
   updateAbTest(inputInfo: InputInfo) {
     return this.http.post('/api/abtest/updateAbTest', {
       id: inputInfo._id,
-      codeSnippet: inputInfo.codeSnippet
+      codeSnippet: inputInfo.codeSnippet,
+      testStatus: inputInfo.testStatus,
+      modifiedDom: inputInfo.modifiedDom
+    });
+  }
+
+  saveAudienceInfo(inputInfo: InputInfo) {
+    return this.http.post('/api/abtest/saveAudienceInfo', {
+      id: inputInfo._id,
+      testStatus: inputInfo.testStatus,
+      testTraffic: inputInfo.testTraffic,
+      deviceType: inputInfo.deviceType
+    });
+  }
+
+  deleteAbTest(inputInfo: InputInfo) {
+    return this.http.post('/api/abtest/deleteAbTest', {
+      id: inputInfo._id      
+    })
+  }
+
+  // Used to populate the DOM inside the froala editor
+  getDOMUrl(url: string) {
+    return this.http.get(url, {
+      responseType: 'text',
     });
   }
 }

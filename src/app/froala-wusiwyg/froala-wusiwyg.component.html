@@ -1,0 +1,14 @@
+<div class="container">
+  <div id="froala-editor" [froalaEditor]></div>
+</div>
+<br />
+<div class="container">
+  <div class="container">
+    <button class="btn btn-primary" type="submit" (click)="getHtml()">Save</button>
+  </div>
+  <br/>
+  <div class="container" *ngIf="readyToActivate">
+    <p>Like what you see? Do you want to decide the audience and activate the test? Click Next</p>
+    <button type="submit" class="btn btn-primary" (click)="onNextClick()">Next</button>
+  </div>
+</div>

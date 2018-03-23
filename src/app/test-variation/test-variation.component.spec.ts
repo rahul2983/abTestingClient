@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisualEditorComponent } from './visual-editor.component';
+import { TestVariationComponent } from './test-variation.component';
 
-describe('VisualEditorComponent', () => {
-  let component: VisualEditorComponent;
-  let fixture: ComponentFixture<VisualEditorComponent>;
+describe('TestVariationComponent', () => {
+  let component: TestVariationComponent;
+  let fixture: ComponentFixture<TestVariationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VisualEditorComponent ]
+      declarations: [ TestVariationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VisualEditorComponent);
+    fixture = TestBed.createComponent(TestVariationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
