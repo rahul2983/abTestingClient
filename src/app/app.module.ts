@@ -19,6 +19,7 @@ import { FroalaWusiwygComponent } from './froala-wusiwyg/froala-wusiwyg.componen
 import { ActivateComponent } from './activate/activate.component';
 import { TestControlComponent } from './test-control/test-control.component';
 import { TestVariationComponent } from './test-variation/test-variation.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TestVariationComponent } from './test-variation/test-variation.componen
     FroalaWusiwygComponent,
     ActivateComponent,
     TestControlComponent,
-    TestVariationComponent
+    TestVariationComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,330 @@
+[
+  {
+    "name": "AppModule",
+    "file": "src/app/app.module.ts",
+    "providers": [
+      {
+        "name": "LoadUrlService"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "AppComponent"
+      },
+      {
+        "name": "RootComponent"
+      },
+      {
+        "name": "TestPageComponent"
+      },
+      {
+        "name": "HomeComponent"
+      },
+      {
+        "name": "CreateTestComponent"
+      },
+      {
+        "name": "CustomCodeViewComponent"
+      },
+      {
+        "name": "FroalaWusiwygComponent"
+      },
+      {
+        "name": "ActivateComponent"
+      },
+      {
+        "name": "TestControlComponent"
+      },
+      {
+        "name": "TestVariationComponent"
+      }
+    ],
+    "imports": [
+      {
+        "name": "BrowserModule"
+      },
+      {
+        "name": "AppRoutingModule"
+      },
+      {
+        "ns": "NgbModule",
+        "name": "NgbModule.forRoot()"
+      },
+      {
+        "name": "FormsModule"
+      },
+      {
+        "name": "HttpClientModule"
+      },
+      {
+        "ns": "FroalaEditorModule",
+        "name": "FroalaEditorModule.forRoot()"
+      },
+      {
+        "ns": "FroalaViewModule",
+        "name": "FroalaViewModule.forRoot()"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [
+      {
+        "name": "AppComponent"
+      }
+    ],
+    "__raw": [
+      {
+        "pos": 1247,
+        "end": 1506,
+        "flags": 0,
+        "kind": 265,
+        "name": {
+          "pos": 1247,
+          "end": 1262,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 1263,
+          "end": 1506,
+          "flags": 0,
+          "kind": 178,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1265,
+              "end": 1282,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            },
+            {
+              "pos": 1283,
+              "end": 1301,
+              "flags": 0,
+              "escapedText": "RootComponent"
+            },
+            {
+              "pos": 1302,
+              "end": 1324,
+              "flags": 0,
+              "escapedText": "TestPageComponent"
+            },
+            {
+              "pos": 1325,
+              "end": 1343,
+              "flags": 0,
+              "escapedText": "HomeComponent"
+            },
+            {
+              "pos": 1344,
+              "end": 1368,
+              "flags": 0,
+              "escapedText": "CreateTestComponent"
+            },
+            {
+              "pos": 1369,
+              "end": 1397,
+              "flags": 0,
+              "escapedText": "CustomCodeViewComponent"
+            },
+            {
+              "pos": 1398,
+              "end": 1425,
+              "flags": 0,
+              "escapedText": "FroalaWusiwygComponent"
+            },
+            {
+              "pos": 1426,
+              "end": 1448,
+              "flags": 0,
+              "escapedText": "ActivateComponent"
+            },
+            {
+              "pos": 1449,
+              "end": 1474,
+              "flags": 0,
+              "escapedText": "TestControlComponent"
+            },
+            {
+              "pos": 1475,
+              "end": 1502,
+              "flags": 0,
+              "escapedText": "TestVariationComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1507,
+        "end": 1690,
+        "flags": 0,
+        "kind": 265,
+        "name": {
+          "pos": 1507,
+          "end": 1517,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 1518,
+          "end": 1690,
+          "flags": 0,
+          "kind": 178,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1520,
+              "end": 1538,
+              "flags": 0,
+              "escapedText": "BrowserModule"
+            },
+            {
+              "pos": 1539,
+              "end": 1560,
+              "flags": 0,
+              "escapedText": "AppRoutingModule"
+            },
+            {
+              "pos": 1561,
+              "end": 1585,
+              "flags": 0,
+              "kind": 182,
+              "expression": {
+                "pos": 1561,
+                "end": 1583,
+                "flags": 0,
+                "kind": 180,
+                "expression": {
+                  "pos": 1561,
+                  "end": 1575,
+                  "flags": 0,
+                  "escapedText": "NgbModule"
+                },
+                "name": {
+                  "pos": 1576,
+                  "end": 1583,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": []
+            },
+            {
+              "pos": 1586,
+              "end": 1602,
+              "flags": 0,
+              "escapedText": "FormsModule"
+            },
+            {
+              "pos": 1603,
+              "end": 1624,
+              "flags": 0,
+              "escapedText": "HttpClientModule"
+            },
+            {
+              "pos": 1625,
+              "end": 1658,
+              "flags": 0,
+              "kind": 182,
+              "expression": {
+                "pos": 1625,
+                "end": 1656,
+                "flags": 0,
+                "kind": 180,
+                "expression": {
+                  "pos": 1625,
+                  "end": 1648,
+                  "flags": 0,
+                  "escapedText": "FroalaEditorModule"
+                },
+                "name": {
+                  "pos": 1649,
+                  "end": 1656,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": []
+            },
+            {
+              "pos": 1659,
+              "end": 1686,
+              "flags": 0,
+              "kind": 182,
+              "expression": {
+                "pos": 1659,
+                "end": 1684,
+                "flags": 0,
+                "kind": 180,
+                "expression": {
+                  "pos": 1659,
+                  "end": 1676,
+                  "flags": 0,
+                  "escapedText": "FroalaViewModule"
+                },
+                "name": {
+                  "pos": 1677,
+                  "end": 1684,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": []
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1691,
+        "end": 1721,
+        "flags": 0,
+        "kind": 265,
+        "name": {
+          "pos": 1691,
+          "end": 1703,
+          "flags": 0,
+          "escapedText": "providers"
+        },
+        "initializer": {
+          "pos": 1704,
+          "end": 1721,
+          "flags": 0,
+          "kind": 178,
+          "elements": [
+            {
+              "pos": 1706,
+              "end": 1720,
+              "flags": 0,
+              "escapedText": "LoadUrlService"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1722,
+        "end": 1750,
+        "flags": 0,
+        "kind": 265,
+        "name": {
+          "pos": 1722,
+          "end": 1734,
+          "flags": 0,
+          "escapedText": "bootstrap"
+        },
+        "initializer": {
+          "pos": 1735,
+          "end": 1750,
+          "flags": 0,
+          "kind": 178,
+          "elements": [
+            {
+              "pos": 1737,
+              "end": 1749,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
